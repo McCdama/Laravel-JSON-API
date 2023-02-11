@@ -33,7 +33,7 @@ class Server extends BaseServer
     protected function allSchemas(): array
     {
         return [
-            // @TODO
+            Posts\PostSchema::class
         ];
     }
 }
