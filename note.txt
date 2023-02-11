@@ -3,7 +3,7 @@ php artisan make:model Mohed --migration
 php artisan migrate
 
 php artisan jsonapi:schema moheds --server=v1
---> register Schema in Server.php
+--> register Schema in app/JsonApi/V1/Server.php
 
 
 php artisan make:policy MohedPolicy --model Mohed
