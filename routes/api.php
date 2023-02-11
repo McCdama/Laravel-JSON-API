@@ -22,10 +22,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Put Accept --> application/vnd.api+json in Header Request
 JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
-    $server->resource('posts', JsonApiController::class)->readOnly()->relationships(function ($relation){
-        // This adds the following routes
-        // GET /api/v1/posts/<ID>/<RELATION_NAME>
-        // GET /api/v1/posts/<ID>/relationships/<RELATION_NAME>
+    $server->resource('posts', JsonApiController::class)
+            //->readOnly()
+            ->only('index', 'show', 'store')
+            ->relationships(function ($relation){
+            // This adds the following routes
+            // GET /api/v1/posts/<ID>/<RELATION_NAME>
+            // GET /api/v1/posts/<ID>/relationships/<RELATION_NAME>
             $relation->hasOne('author')->readOnly();
             $relation->hasMany('comments')->readOnly();
             $relation->hasOne('tags')->readOnly();

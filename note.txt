@@ -2,11 +2,45 @@ php artisan make:model Mohed --migration
 
 php artisan migrate
 
+php artisan jsonapi:request moheds
+
 php artisan jsonapi:schema moheds --server=v1
 --> register Schema in app/JsonApi/V1/Server.php
 
 
 php artisan make:policy MohedPolicy --model Mohed
 
+generate auth token: php artisan tinker
 
 php artisan optimize:clear
+
+
+:::::::::::::::::::::::::POST VERB:::::::::::::::::::::::::
+
+POST http://localhost:8000/api/v1/posts?include=author,tags HTTP/1.1
+Authorization: Bearer <TOKEN From Tinker>
+Accept: application/vnd.api+json
+Content-Type: application/vnd.api+json
+
+{
+  "data": {
+    "type": "posts",
+    "attributes": {
+      "content": "",
+      "publishedAt": null,
+      "slug": "",
+      "title": ""
+    },
+    "relationships": {
+      "tags": {
+        "data": [
+          {
+            "type": "tags",
+            "id": ""
+          }
+        ]
+      }
+    }
+  }
+}
+::::::::::::::::::::::::::::::::::::::::::::::::::

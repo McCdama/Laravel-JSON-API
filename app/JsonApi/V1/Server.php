@@ -3,6 +3,8 @@
 namespace App\JsonApi\V1;
 
 use LaravelJsonApi\Core\Server\Server as BaseServer;
+use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 # contains the configuration for the JSON:API server
 class Server extends BaseServer
@@ -22,7 +24,15 @@ class Server extends BaseServer
      */
     public function serving(): void
     {
-        // no-op
+        // use sanctum guard when authenticating requests.
+        // use php artisan tinker in the terminal based on a user
+        // $token = $user->createToken('test');
+        Auth::shouldUse('sanctum');
+
+        // automatically assign the authenticated user as the author of a post when the model is created
+        Post::creating(static function (Post $post): void {
+           $post->author()->associate(Auth::user());
+        });
     }
 
     /**
