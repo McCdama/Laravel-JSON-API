@@ -10,7 +10,6 @@ use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
 use LaravelJsonApi\Eloquent\Schema;
 use LaravelJsonApi\Eloquent\Fields\Str;
-use LaravelJsonApi\Eloquent\Fields\DateTime;
 
 class PostSchema extends Schema
 {
@@ -30,13 +29,13 @@ class PostSchema extends Schema
     public function fields(): array
     {
         return [
-            ID::make(),
-            Str::make('content'),
-            DateTime::make('publishedAt')->sortable(),
-            Str::make('slug'),
-            Str::make('title')->sortable(),
-            DateTime::make('createdAt')->sortable()->readOnly(),
-            DateTime::make('updatedAt')->sortable()->readOnly(),
+           ID::make(),
+           Str::make('content'),
+           DateTime::make('publishedAt')->sortable(),
+           Str::make('slug'),
+           Str::make('title')->sortable(),
+           DateTime::make('createdAt')->sortable()->readOnly(),
+           DateTime::make('updatedAt')->sortable()->readOnly()
         ];
     }
 
