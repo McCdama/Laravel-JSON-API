@@ -33,4 +33,9 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
             $relation->hasMany('comments')->readOnly();
             $relation->hasOne('tags')->readOnly();
     });
+    $server->resource('jobs', JsonApiController::class)
+            ->only('index', 'show', 'store', 'update')
+            ->relationships(function ($relation){
+            $relation->hasMany('job-locations');
+    });
 });

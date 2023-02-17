@@ -47,6 +47,8 @@ class Server extends BaseServer
             Comments\CommentSchema::class,
             Tags\TagSchema::class,
             Users\UserSchema::class,
+            Jobs\JobSchema::class,
+            JobLocations\JobLocationSchema::class,
         ];
     }
 }

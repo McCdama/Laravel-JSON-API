@@ -29,7 +29,7 @@ class Handler extends ExceptionHandler
      * @var array<int, class-string<\Throwable>>
      */
     protected $dontReport = [
-        JE::class,
+        //JE::class,
     ];
 
     /**
@@ -50,6 +50,6 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(EXPA::make()->renderable());
+        //this->reportable(EXPA::make()->renderable());
     }
 }
