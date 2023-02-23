@@ -49,6 +49,7 @@ class Server extends BaseServer
             Users\UserSchema::class,
             Jobs\JobSchema::class,
             JobLocations\JobLocationSchema::class,
+            Lands\LandSchema::class,
         ];
     }
 }

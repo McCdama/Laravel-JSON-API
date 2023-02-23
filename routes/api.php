@@ -38,4 +38,7 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
             ->relationships(function ($relation){
             $relation->hasMany('job-locations');
     });
+    $server->resource('lands', JsonApiController::class)
+    ->only('index', 'show', 'store', 'update');
+
 });
