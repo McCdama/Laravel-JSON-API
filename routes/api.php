@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use LaravelJsonApi\Laravel\Facades\JsonApiRoute;
 use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +17,31 @@ use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 |
 */
 
+// \Illuminate\Routing\RouteRegistrar controller(string $controller)
+//  group() Create a route group with shared attributes.
+Route::controller(AuthController::class)
+    ->prefix('v1')
+    ->group(function () {
+            Route::post('/login', 'login');
+            Route::post('/me', 'me');
+        }
+    );
+
+/*
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'v1'
+], function ($router) {
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+*/
 
 // Put Accept --> application/vnd.api+json in Header Request
 JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
@@ -42,3 +65,4 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
     ->only('index', 'show', 'store', 'update');
 
 });
+

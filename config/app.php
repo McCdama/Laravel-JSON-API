@@ -181,6 +181,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        PHPOpenSourceSaver\JWTAuth\Providers\LaravelServiceProvider::class, // then do the publish --> will create config/jwt.php
 
         /*
          * Package Service Providers...
