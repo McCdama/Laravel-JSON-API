@@ -16,9 +16,9 @@ class PostPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function viewAny(?User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,6 +30,7 @@ class PostPolicy
      */
     public function view(?User $user, Post $post) //$user argument nullable. => the method will be called if there's no authenticated user
     {
+        return true;
         if ($post->published_at) {
             return true;
         }

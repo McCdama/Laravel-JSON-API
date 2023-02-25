@@ -37,11 +37,11 @@ Route::group([
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
 });
-
+*/
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-*/
+
 
 // Put Accept --> application/vnd.api+json in Header Request
 JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
